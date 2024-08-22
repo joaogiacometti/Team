@@ -1,20 +1,13 @@
-import { createClient } from "@/utils/supabase/server";
-import { redirect } from "next/navigation";
+import { CreateTeamDialog } from "@/components/teams/CreateTeamDialog";
+import { TeamList } from "@/components/teams/TeamsList";
 
 export default async function Team() {
-  const supabase = createClient();
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return redirect("/login");
-  }
-
   return (
-    <div>
-      <h1>Teams</h1>
-    </div>
+    <section>
+      <div className="pb-8">
+        <CreateTeamDialog></CreateTeamDialog>
+      </div>
+      <TeamList></TeamList>
+    </section>
   );
 }
