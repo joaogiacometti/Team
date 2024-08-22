@@ -1,4 +1,4 @@
-import AuthHeader from "../components/AuthHeader";
+import AuthHeader from "../components/header/HomeHeader";
 import { createClient } from "@/utils/supabase/server";
 
 export default async function Index() {

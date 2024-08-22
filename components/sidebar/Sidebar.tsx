@@ -1,16 +1,7 @@
 "use client";
 
 import { Command, CommandGroup, CommandItem, CommandList } from "../ui/command";
-import {
-  User,
-  HandCoins,
-  Inbox,
-  BellRing,
-  Settings,
-  GlobeLock,
-  ScrollText,
-  Home,
-} from "lucide-react";
+import { User, Users, Settings, ScrollText, Home } from "lucide-react";
 import { UserItem } from "@/components/user/UserItem";
 import Link from "next/link";
 
@@ -25,24 +16,14 @@ export const Sidebar = () => {
           text: "Home",
         },
         {
+          link: "/teams",
+          icon: <Users />,
+          text: "Teams",
+        },
+        {
           link: "/",
           icon: <User />,
           text: "Profile",
-        },
-        {
-          link: "/",
-          icon: <HandCoins />,
-          text: "Billing",
-        },
-        {
-          link: "/",
-          icon: <Inbox />,
-          text: "Inbox",
-        },
-        {
-          link: "/",
-          icon: <BellRing />,
-          text: "Notifications",
         },
       ],
     },
@@ -54,11 +35,7 @@ export const Sidebar = () => {
           icon: <Settings />,
           text: "General Settings",
         },
-        {
-          link: "/",
-          icon: <GlobeLock />,
-          text: "Privacy",
-        },
+
         {
           link: "/",
           icon: <ScrollText />,
@@ -90,12 +67,6 @@ export const Sidebar = () => {
             ))}
           </CommandList>
         </Command>
-      </div>
-      <div>
-        <Link href="/team/settings" className="flex items-center gap-2">
-          <Settings />
-          <span>Team settings</span>
-        </Link>
       </div>
     </aside>
   );

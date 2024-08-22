@@ -14,7 +14,7 @@ export default async function Team() {
 
   return (
     <div>
-      <h1>Team</h1>
+      <h1>Teams</h1>
     </div>
   );
 }

@@ -23,7 +23,7 @@ export default async function AuthButton() {
         <nav className="flex justify-between gap-4 p-4 border-b">
           <div className="flex flex-1 justify-start"></div>
           <div className="flex flex-1 justify-center items-center">
-            <Link href="/team">Team</Link>
+            <Link href="/teams">Teams</Link>
           </div>
           <div className="flex flex-1 justify-end items-center">
             <span>Hey, {user.email}!</span>
