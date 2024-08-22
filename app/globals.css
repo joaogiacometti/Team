@@ -66,4 +66,16 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .tag {
+    @apply capitalize;
+  }
+
+  .tag.admin {
+    @apply bg-orange-100 hover:bg-orange-100 text-orange-500;
+  }
+
+  .tag.viewer {
+    @apply bg-sky-100 hover:bg-sky-100 text-sky-500;
+  }
 }

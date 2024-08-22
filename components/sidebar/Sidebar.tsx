@@ -92,7 +92,7 @@ export const Sidebar = () => {
         </Command>
       </div>
       <div>
-        <Link href="/team" className="flex items-center gap-2">
+        <Link href="/team/settings" className="flex items-center gap-2">
           <Settings />
           <span>Team settings</span>
         </Link>
