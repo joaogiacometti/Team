@@ -9,3 +9,9 @@ export type TeamInsertType = Omit<
     TeamType,
     "id"
 >
+
+export type Profile = {
+    id: string;
+    email: string;
+    avatar_url: string;
+}
