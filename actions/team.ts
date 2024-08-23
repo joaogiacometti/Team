@@ -1,17 +1,14 @@
 "use server";
 
-import { TeamType } from "@/types/public";
+import { TeamInsertType, TeamType } from "@/types/public";
 import { createClient } from "@/utils/supabase/server";
+import { getUser } from "@/actions/auth";
+import { revalidatePath } from "next/cache";
 
 const supabase = createClient();
 
 export async function getAllTeams(): Promise<TeamType[] | null> {
-  const { data, error: userError } = await supabase.auth.getUser();
-
-  if (userError || !data?.user) {
-    console.log(userError || "No user logged in");
-    return null;
-  }
+  const user = await getUser();
 
   const { data: teamsWrapper, error } = await supabase
     .from("UserTeams")
@@ -20,10 +17,11 @@ export async function getAllTeams(): Promise<TeamType[] | null> {
         Team(
             id,
             name,
-            description
+            description,
+            owner
         )`
     )
-    .eq("user_id", data.user.id);
+    .eq("user_id", user!.id);
 
   if (error) {
     console.log("Error fetching teams:", error);
@@ -37,3 +35,18 @@ export async function getAllTeams(): Promise<TeamType[] | null> {
 
   return null;
 }
+
+export async function create(params: TeamInsertType) {
+  const { error } = await supabase
+  .from('Team')
+  .insert([
+    { name: params.name, description: params.description, owner: params.owner },
+  ])
+  .select()
+
+  if(error) {
+    console.log("Error creating team:", error);
+  }
+
+  revalidatePath("/teams");
+} 

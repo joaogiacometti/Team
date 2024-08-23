@@ -1,6 +1,6 @@
 "use client";
 
-import { getAllTeams } from "@/actions/user-teams";
+import { getAllTeams } from "@/actions/team";
 import { TeamType } from "@/types/public";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -14,23 +14,9 @@ import {
 } from "@/components/ui/card";
 import Link from "next/link";
 
-export const TeamList = () => {
-  const [teams, setTeams] = useState<TeamType[] | null>();
-
-  async function fetchAllTeams() {
-    const response = await getAllTeams();
-
-    if (response) {
-      setTeams(response);
-    }
-  }
-
-  useEffect(() => {
-    fetchAllTeams();
-  }, []);
-
+export const TeamList = ({ teams }: { teams: TeamType[] }) => {
   return (
-    <>
+    <div className="grid grid-cols-4 gap-4">
       {teams?.map((team) => (
         <Card className="w-[350px]" key={team.id}>
           <CardHeader>
@@ -48,6 +34,6 @@ export const TeamList = () => {
           </CardFooter>
         </Card>
       ))}
-    </>
+    </div>
   );
 };
